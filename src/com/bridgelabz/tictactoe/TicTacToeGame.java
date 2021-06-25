@@ -8,10 +8,27 @@ public class TicTacToeGame
 	{
 		Scanner scanner = new Scanner(System.in);		
 		char[] board = createBoard();
-		System.out.println("Enter The Sysmbol which you want i.e. X or O");
-		char playerSymbol = scanner.next().charAt(0);
+		System.out.println("Enter The Symbol which you want i.e. X or O");
+		char playerSymbol = scanner.next().toUpperCase().charAt(0);
 		scanner.close();
 		char computerSymbol = determineComputerSymbol(playerSymbol);
+		displayBoard(board);
+	}
+
+	private static void displayBoard(char[] board)
+	{
+		for (int index = 1; index < board.length; index++) 
+		{
+			System.out.print(board[index]);
+			if(index%3 == 0)
+			{
+				System.out.println();
+			}
+			else 
+			{
+				System.out.print(" | ");
+			}
+		}
 	}
 
 	private static char determineComputerSymbol(char playerSymbol) {
@@ -34,9 +51,9 @@ public class TicTacToeGame
 	private static char[] createBoard()
 	{
 		char[] board = new char[10];
-		for (int i = 1; i < board.length; i++) 
+		for (int index = 1; index < board.length; index++) 
 		{
-			board[i] = '-';
+			board[index] = '-';
 		}
 		return board;
 	}
