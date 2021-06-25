@@ -18,11 +18,11 @@ public class TicTacToeGame
 		char computerSymbol = ' ' ;
 		if (playerSymbol == 'X')
 		{
-			 computerSymbol = 'O';
+			computerSymbol = 'O';
 		}
 		else if (playerSymbol == 'O')
 		{
-			 computerSymbol = 'X';
+			computerSymbol = 'X';
 		}
 		else
 		{
@@ -41,5 +41,5 @@ public class TicTacToeGame
 		return board;
 	}
 
-	
+
 }
