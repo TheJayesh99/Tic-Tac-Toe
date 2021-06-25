@@ -12,11 +12,31 @@ public class TicTacToeGame
 		char playerSymbol = scanner.next().toUpperCase().charAt(0);
 		char computerSymbol = determineComputerSymbol(playerSymbol);
 		displayBoard(board);
-		while(checkFreeSpace(board))
-		{			
-			playerMove(scanner, board, playerSymbol);
+		if(toss())
+		{	
+			while(checkFreeSpace(board))
+			{			
+				playerMove(scanner, board, playerSymbol);
+			}
 		}
 		scanner.close();
+	}
+
+	private static boolean toss() {
+		int toss = (int)Math.floor(Math.random() *10) % 2 ;
+		int playerOwnToss = 1;
+		boolean playerTurn;
+		if (toss == playerOwnToss ) 
+		{
+			playerTurn = true;
+			System.out.println("You own the toss  ");
+		} 
+		else 
+		{
+			playerTurn = false;
+			System.out.println("computer own the toss ");
+		}
+		return playerTurn;
 	}
 
 	private static boolean checkFreeSpace(char[] board) {
