@@ -1,5 +1,6 @@
 package com.bridgelabz.tictactoe;
 
+
 import java.util.Scanner;
 
 public class TicTacToeGame
@@ -12,14 +13,86 @@ public class TicTacToeGame
 		char playerSymbol = scanner.next().toUpperCase().charAt(0);
 		char computerSymbol = determineComputerSymbol(playerSymbol);
 		displayBoard(board);
-		if(toss())
+		boolean playerTurn = toss();
+		
+		System.out.println(board[1]);
+		while(true)
 		{	
-			while(checkFreeSpace(board))
-			{			
-				playerMove(scanner, board, playerSymbol);
+			char winner = win(board);
+			if(winner == 'X' | winner == 'O')
+			{
+				if(playerSymbol == winner)
+				{					
+					System.out.println("Player Won");
+				}
+				else
+				{
+					System.out.println("Computer Won");
+				}
+				break;
+			}
+			else if(checkFreeSpace(board))
+			{	
+				if(playerTurn) 
+				{	
+					System.out.println("Your turn");
+					playerMove(scanner, board, playerSymbol);
+					playerTurn = !(playerTurn);
+				}
+				else
+				{
+					System.out.println("computer Turn");
+					playerTurn = !(playerTurn);
+				}
+			}
+			else
+			{
+				System.out.println("The game Tie");
+				break;
+
 			}
 		}
 		scanner.close();
+	}
+
+	private static char win(char[] board) {
+		char win = '-';
+		// Condition horizontal			
+		if( (board[1] == board[2] && board[1] == board[3]) && (board[1] != '-' ) )
+		{
+			win = board[1];
+		}
+		else if ((board[4] == board[5] && board[4] == board[6]) && (board[4] != '-' )) 
+		{
+			win = board[4];
+		}
+		else if ((board[7] == board[8] && board[8] == board[9]) && (board[7] != '-' )) 
+		{
+			win = board[7];
+		}
+		// Condition Vertical
+		else if ((board[1] == board[4] && board[4] == board[7]) && (board[1] != '-' )) 
+		{
+			win = board[1];
+		}
+		else if ((board[2] == board[5] && board[5] == board[8]) && (board[2] != '-' )) 
+		{
+			win = board[2];
+		}
+		else if ((board[3] == board[6] && board[6] == board[9]) && (board[3] != '-' )) 
+		{
+			win = board[2];
+		}
+		//Diagonal Conditions
+		else if ((board[1] == board[5] && board[5] == board[9]) && (board[1] != '-' )) 
+		{
+			win = board[1];
+		}
+		else if ((board[3] == board[5] && board[5] == board[7]) && (board[3] != '-' )) 
+		{
+			win = board[3];
+		}
+		return win;
 	}
 
 	private static boolean toss() {
@@ -93,7 +166,7 @@ public class TicTacToeGame
 	}
 
 	private static char determineComputerSymbol(char playerSymbol) {
-		char computerSymbol = ' ' ;
+		char computerSymbol = '-' ;
 		if (playerSymbol == 'X')
 		{
 			computerSymbol = 'O';
@@ -105,7 +178,7 @@ public class TicTacToeGame
 		else
 		{
 			System.err.println("You inserted a wrong Symbol");
-			
+
 		}
 		return computerSymbol;
 	}
