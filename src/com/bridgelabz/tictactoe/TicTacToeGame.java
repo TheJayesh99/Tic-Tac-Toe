@@ -14,7 +14,7 @@ public class TicTacToeGame
 		char computerSymbol = determineComputerSymbol(playerSymbol);
 		displayBoard(board);
 		boolean playerTurn = toss();
-		
+
 		System.out.println(board[1]);
 		while(true)
 		{	
@@ -169,7 +169,7 @@ public class TicTacToeGame
 		{
 			board[5] = computerSymbol;
 		}
-		//					Row 1
+		//Row 1
 		else if (board[1] == board[2]  && board[1] != '-' && board[3] == '-' )
 		{
 			board[3] = computerSymbol;
@@ -182,7 +182,7 @@ public class TicTacToeGame
 		{
 			board[1] = computerSymbol;
 		}
-		
+
 		//Row 2 
 		else if (board[4] == board[5] && board[4] != '-' && board[6] == '-' )
 		{
@@ -196,7 +196,7 @@ public class TicTacToeGame
 		{
 			board[4] = computerSymbol;
 		}
-		
+
 		//Row 3
 		else if ((board[7] == board[8] && board[7] != '-' && board[9] == '-'))
 		{
@@ -210,7 +210,7 @@ public class TicTacToeGame
 		{
 			board[7] = computerSymbol;
 		}
-		
+
 		//Col 1
 		else if ((board[1] == board[4] && board[1] != '-' && board[7] == '-'))
 		{
@@ -224,7 +224,7 @@ public class TicTacToeGame
 		{
 			board[1] = computerSymbol;
 		}
-		
+
 		//Col 2
 		else if ((board[2] == board[5] && board[2] != '-' && board[8] == '-'))
 		{
@@ -238,7 +238,7 @@ public class TicTacToeGame
 		{
 			board[2] = computerSymbol;
 		}
-		
+
 		//Col3
 		else if ((board[3] == board[6] && board[3] != '-' && board[9] == '-'))
 		{
@@ -284,23 +284,28 @@ public class TicTacToeGame
 		{
 			while (true)
 			{
-				int cornerArray[] = {1,3,7,9};
+				int cornerPositions[] = {1,3,7,9};
 				int randomCorner = (int) Math.floor(Math.random() * 10) % 4;
-				if(board[cornerArray[randomCorner]] == '-') 
+				if(board[cornerPositions[randomCorner]] == '-') 
 				{					
-					board[cornerArray[randomCorner]] = computerSymbol;
+					board[cornerPositions[randomCorner]] = computerSymbol;
 					break;
 				}
 			}
+		}
+		else if (board[5] == '-')
+		{
+			board[5] = computerSymbol;
 		}
 		else
 		{
 			while (true)
 			{
-				compMark =(int) Math.floor(Math.random() * 10);
-				if(board[compMark] == '-' && compMark != 0)
-				{
-					board[compMark] = computerSymbol;
+				int centerPositions[] = {2,4,6,8};
+				int randomCorner = (int) Math.floor(Math.random() * 10) % 4;
+				if(board[centerPositions[randomCorner]] == '-') 
+				{					
+					board[centerPositions[randomCorner]] = computerSymbol;
 					break;
 				}
 			}
@@ -310,7 +315,7 @@ public class TicTacToeGame
 
 	private static char win(char[] board) {
 		char win = '-';
-		
+
 		// Condition horizontal			
 		if( (board[1] == board[2] && board[1] == board[3]) && (board[1] != '-' ) )
 		{
