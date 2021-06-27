@@ -23,12 +23,13 @@ public class TicTacToeGame
 			{
 				if(playerSymbol == winner)
 				{					
-					System.out.println("Player Won");
+					System.out.println("Player Won ");
 				}
 				else
 				{
 					System.out.println("Computer Won");
 				}
+				System.out.println("Game Over");
 				break;
 			}
 			else if(checkFreeSpace(board))
@@ -49,7 +50,7 @@ public class TicTacToeGame
 			}
 			else
 			{
-				System.out.println("The game Tie");
+				System.out.println("The game Tie \n Game Over");
 				break;
 
 			}
